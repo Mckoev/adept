@@ -43,6 +43,16 @@ module.exports = {
             },
         ],
         'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['state'] }],
+        "jsx-a11y/label-has-associated-control": ["error", {
+            "required": {
+                "some": ["nesting", "id"]
+            }
+        }],
+        "jsx-a11y/label-has-for": ["error", {
+            "required": {
+                "some": ["nesting", "id"]
+            }
+        }]
     },
     settings: {
         'import/resolver': {
