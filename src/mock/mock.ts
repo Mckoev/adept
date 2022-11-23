@@ -1,5 +1,5 @@
-import {ICompany} from "../types/interfaces";
-import {getID} from "../helpers/getID";
+import {ICompany} from "types/interfaces";
+import {getID} from "helpers/getID";
 
 export const mock: ICompany[] = [
     {

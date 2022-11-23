@@ -1,4 +1,3 @@
-
 export interface ICompany {
     id: string | undefined;
     company: string;
@@ -13,10 +12,6 @@ export interface IWorkers {
     jobTitle: string;
     id?: string;
     checked?: boolean
-}
-
-export interface IElement {
-    el: ICompany;
 }
 
 export interface ICell {

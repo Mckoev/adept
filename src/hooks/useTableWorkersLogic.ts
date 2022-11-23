@@ -1,9 +1,9 @@
-import {useAppSelector} from "../reduxToolkit/hooks";
-import {ICompany, IWorkers} from "../types/interfaces";
-import {getID} from "../helpers/getID";
-import {store} from "../reduxToolkit/store";
-import {selectedAllWorkersAction} from "../reduxToolkit/slices/selectedAllWorkers";
-import {workersAction} from "../reduxToolkit/slices/workers";
+import {useAppSelector} from "reduxToolkit/hooks";
+import {ICompany, IWorkers} from "types/interfaces";
+import {getID} from "helpers/getID";
+import {store} from "reduxToolkit/store";
+import {selectedAllWorkersAction} from "reduxToolkit/slices/selectedAllWorkers";
+import {workersAction} from "reduxToolkit/slices/workers";
 
 export const useTableWorkersLogic = () => {
 
@@ -12,7 +12,10 @@ export const useTableWorkersLogic = () => {
 
     const setCheckbox = (id: string | undefined): void => {
         store.dispatch(selectedAllWorkersAction(false))
-        const newList: IWorkers[] = workers.map((el: IWorkers) => (el.id === id ? {...el, checked: !el.checked} : {...el}));
+        const newList: IWorkers[] = workers.map((el: IWorkers) => (el.id === id ? {
+            ...el,
+            checked: !el.checked
+        } : {...el}));
         const newListChecked: IWorkers | undefined = newList.find(item => item.checked === false);
         if (!newListChecked) {
             store.dispatch(selectedAllWorkersAction(true))
@@ -26,7 +29,7 @@ export const useTableWorkersLogic = () => {
         store.dispatch(workersAction(newList))
     }
 
-    function getWorkers (checkedCompanies: ICompany[]) {
+    function getWorkers(checkedCompanies: ICompany[]) {
         let newWorkers: IWorkers[] = []
         checkedCompanies.forEach((el: any) => {
             newWorkers.push(el.workers)
@@ -42,6 +45,7 @@ export const useTableWorkersLogic = () => {
         }
         return newWorkers
     }
+
     return {
         checkbox,
         workers,

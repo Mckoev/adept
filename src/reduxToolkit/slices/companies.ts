@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 const companies = createSlice({
     name: 'companies',
@@ -11,4 +11,4 @@ const companies = createSlice({
 });
 
 export default companies.reducer;
-export const { companiesAction } = companies.actions;
+export const {companiesAction} = companies.actions;

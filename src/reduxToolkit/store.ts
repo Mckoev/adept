@@ -1,5 +1,4 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-
+import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import companies from "./slices/companies";
 import workers from "./slices/workers";
 import selectedAllWorkers from "./slices/selectedAllWorkers";

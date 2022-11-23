@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 const selectedAllWorkers = createSlice({
     name: 'selectedAllWorkers',
@@ -11,4 +11,4 @@ const selectedAllWorkers = createSlice({
 });
 
 export default selectedAllWorkers.reducer;
-export const { selectedAllWorkersAction } = selectedAllWorkers.actions;
+export const {selectedAllWorkersAction} = selectedAllWorkers.actions;

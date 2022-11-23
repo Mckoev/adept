@@ -1,7 +1,7 @@
-import {TABLE_COLUMN_NAMES} from "../../constants/constants";
-import {ITableprops, IWorkers} from "../../types/interfaces";
-import Cell from "../../components/tableCompany/Cell";
-import {useTableWorkersLogic} from "../../hooks/useTableWorkersLogic";
+import {TABLE_COLUMN_NAMES} from "constants/constants";
+import {ITableprops, IWorkers} from "types/interfaces";
+import Cell from "components/Cell/Cell";
+import {useTableWorkersLogic} from "hooks/useTableWorkersLogic";
 
 function TableWorkers({column1, column2, column3}: ITableprops) {
 
@@ -26,7 +26,7 @@ function TableWorkers({column1, column2, column3}: ITableprops) {
             <tr>
                 <th colSpan={4}>
                     <label>
-                        <input type="checkbox" id="click" onClick={() => setSelectAll()} checked={checkbox} readOnly/>
+                        <input type="checkbox" id="click" onClick={setSelectAll} checked={checkbox} readOnly/>
                         {TABLE_COLUMN_NAMES.SELECT_ALL}
                     </label>
                 </th>
