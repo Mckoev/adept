@@ -1,18 +1,22 @@
-import Cell from "../components/tableCompany/Cell";
-import {ICompany, ITableprops} from "../types/interfaces";
-import {TABLE_COLUMN_NAMES} from "../constants/constants";
-import {UseTableCompanyLogic} from "../hooks/useTableCompanyLogic";
+import {TABLE_COLUMN_NAMES} from "../../constants/constants";
+import {ITableprops, IWorkers} from "../../types/interfaces";
+import Cell from "../../components/tableCompany/Cell";
+import {useTableWorkersLogic} from "../../hooks/useTableWorkersLogic";
 
-function TableCompany({column1, column2, column3}: ITableprops) {
+function TableWorkers({column1, column2, column3}: ITableprops) {
 
-    const {companies,
-        mainCheckBox,
+    const {
+        checkbox,
+        workers,
         setCheckbox,
-        setSelectAll} = UseTableCompanyLogic()
+        setSelectAll,
+    } = useTableWorkersLogic()
 
-    const listItems = companies.map((el: ICompany) => (
+
+    const listItems = workers.map((el: IWorkers) => (
         <tr key={el.id} className={el.checked ? "green" : ""}>
-            <Cell el={el} cell1={el.company} cell2={el.workers.length.toString()} cell3={el.address} setCheckbox={setCheckbox}/>
+            <Cell el={el} cell1={el.name} cell2={el.surname} cell3={el.jobTitle}
+                  setCheckbox={setCheckbox}/>
         </tr>
     ))
 
@@ -22,7 +26,7 @@ function TableCompany({column1, column2, column3}: ITableprops) {
             <tr>
                 <th colSpan={4}>
                     <label>
-                        <input type="checkbox" id="click" onClick={() => setSelectAll()} checked={mainCheckBox} readOnly/>
+                        <input type="checkbox" id="click" onClick={() => setSelectAll()} checked={checkbox} readOnly/>
                         {TABLE_COLUMN_NAMES.SELECT_ALL}
                     </label>
                 </th>
@@ -49,4 +53,4 @@ function TableCompany({column1, column2, column3}: ITableprops) {
     );
 }
 
-export default TableCompany;
+export default TableWorkers;

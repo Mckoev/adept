@@ -3,9 +3,9 @@ import {useEffect} from "react";
 import {store} from "./reduxToolkit/store";
 import {companiesAction} from "./reduxToolkit/slices/companies";
 import {mock} from "./mock/mock";
-import TableCompany from "./pages/TableCompany";
+import TableCompany from "./pages/tables/TableCompany";
 import {TABLE_COLUMN_NAMES} from "./constants/constants";
-import TableWorkers from "./pages/TableWorkers";
+import TableWorkers from "./pages/tables/TableWorkers";
 
 function App() {
 
