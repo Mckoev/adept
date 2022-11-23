@@ -1,16 +1,18 @@
-import {FormEvent} from "react";
 
 export interface ICompany {
-    id: string;
+    id: string | undefined;
     company: string;
     address: string;
     checked: boolean;
     workers: IWorkers[];
 }
 
-interface IWorkers {
+export interface IWorkers {
     name: string;
+    surname: string;
     jobTitle: string;
+    id?: string;
+    checked?: boolean
 }
 
 export interface IElement {
@@ -18,6 +20,15 @@ export interface IElement {
 }
 
 export interface ICell {
-    el: ICompany;
-    setCheckbox: (e: string) => void;
+    el: ICompany | IWorkers;
+    cell1: string;
+    cell2: string;
+    cell3: string;
+    setCheckbox: (e: string | undefined) => void;
+}
+
+export interface ITableprops {
+    column1: string;
+    column2: string;
+    column3: string;
 }

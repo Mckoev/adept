@@ -1,23 +1,24 @@
 import {ICell} from "../../types/interfaces";
+import {TABLE_COLUMN_NAMES} from "../../constants/constants";
 
-function Cell({el, setCheckbox}: ICell) {
+function Cell({cell1, cell2, cell3, el, setCheckbox}: ICell) {
 
     return (
         <>
             <td>
                 <label>
                     <input type="checkbox" id="click" onClick={() => setCheckbox(el.id)} checked={el.checked} readOnly/>
-                    Выделить
+                    {TABLE_COLUMN_NAMES.SELECT}
                 </label>
             </td>
             <td>
-                {el.company}
+                {cell1}
             </td>
             <td>
-                {el.workers.length}
+                {cell2}
             </td>
             <td>
-                {el.address}
+                {cell3}
             </td>
         </>
     );

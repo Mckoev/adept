@@ -1,11 +1,14 @@
 .App {
   text-align: center;
+  display: flex;
 }
 
 table {
   border: 1px solid grey;
   border-collapse: collapse;
   width: 55%;
+  margin: 30px;
+  height: 100vh;
 }
 
 td, th {
