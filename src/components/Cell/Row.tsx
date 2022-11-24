@@ -1,7 +1,7 @@
 import {ICell} from "types/interfaces";
 import {TABLE_COLUMN_NAMES} from "constants/constants";
 
-function Cell({cell1, cell2, cell3, el, setCheckbox}: ICell) {
+function Row({cell1, cell2, cell3, el, setCheckbox}: ICell) {
 
     return (
         <>
@@ -24,4 +24,4 @@ function Cell({cell1, cell2, cell3, el, setCheckbox}: ICell) {
     );
 }
 
-export default Cell;
+export default Row;

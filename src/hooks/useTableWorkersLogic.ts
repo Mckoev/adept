@@ -5,7 +5,6 @@ import {selectedAllWorkersAction} from "reduxToolkit/slices/selectedAllWorkers";
 import {workersAction} from "reduxToolkit/slices/workers";
 
 export const useTableWorkersLogic = () => {
-
     const checkbox: boolean = useAppSelector((state) => state.selectedAllWorkers)
     const workers: IWorkers[] = useAppSelector((state) => state.workers);
 
@@ -24,6 +23,8 @@ export const useTableWorkersLogic = () => {
         const newListChecked: IWorkers | undefined = newList.find(item => item.checked === false);
         if (!newListChecked) {
             store.dispatch(selectedAllWorkersAction(true))
+        } else {
+            store.dispatch(selectedAllWorkersAction(false))
         }
         store.dispatch(workersAction(newList))
     }
@@ -35,7 +36,6 @@ export const useTableWorkersLogic = () => {
     }
 
     function getWorkers(checkedCompanies: ICompany[]) {
-        console.log(checkedCompanies)
         const onlyWorkers = checkedCompanies.map((item) => item.workers)
         const checkedWorkers = onlyWorkers.flat().map((item) => ({...item, checked: checkbox}))
         return checkedWorkers.flat()

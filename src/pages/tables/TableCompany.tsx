@@ -1,4 +1,4 @@
-import Cell from "components/Cell/Cell";
+import Row from "components/Cell/Row";
 import {ICompany, ITableprops} from "types/interfaces";
 import {TABLE_COLUMN_NAMES} from "constants/constants";
 import {useTableCompanyLogic} from "hooks/useTableCompanyLogic";
@@ -7,15 +7,15 @@ function TableCompany({column1, column2, column3}: ITableprops) {
 
     const {
         companies,
-        mainCheckBox,
+        checkbox,
         setCheckbox,
         setSelectAll
     } = useTableCompanyLogic()
 
     const listItems = companies.map((el: ICompany) => (
         <tr key={el.id} className={el.checked ? "green" : ""}>
-            <Cell el={el} cell1={el.company} cell2={el.workers.length.toString()} cell3={el.address}
-                  setCheckbox={setCheckbox}/>
+            <Row el={el} cell1={el.company} cell2={el.workers.length.toString()} cell3={el.address}
+                 setCheckbox={setCheckbox}/>
         </tr>
     ))
 
@@ -25,7 +25,7 @@ function TableCompany({column1, column2, column3}: ITableprops) {
             <tr>
                 <th colSpan={4}>
                     <label>
-                        <input type="checkbox" id="click" onClick={setSelectAll} checked={mainCheckBox} readOnly/>
+                        <input type="checkbox" id="click" onClick={setSelectAll} checked={checkbox} readOnly/>
                         {TABLE_COLUMN_NAMES.SELECT_ALL}
                     </label>
                 </th>

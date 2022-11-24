@@ -1,24 +1,15 @@
 import {TABLE_COLUMN_NAMES} from "constants/constants";
-import {ITableprops, IWorkers} from "types/interfaces";
-import Row from "components/Cell/Row";
-import {useTableWorkersLogic} from "hooks/useTableWorkersLogic";
 
-function TableWorkers({column1, column2, column3}: ITableprops) {
+function TableCompany({data}: any) {
 
     const {
+        column1,
+        column2,
+        column3,
         checkbox,
-        workers,
-        setCheckbox,
         setSelectAll,
-    } = useTableWorkersLogic()
-
-
-    const listItems = workers.map((el: IWorkers) => (
-        <tr key={el.id} className={el.checked ? "green" : ""}>
-            <Row el={el} cell1={el.name} cell2={el.surname} cell3={el.jobTitle}
-                 setCheckbox={setCheckbox}/>
-        </tr>
-    ))
+        child
+    } = data
 
     return (
         <table>
@@ -47,10 +38,10 @@ function TableWorkers({column1, column2, column3}: ITableprops) {
             </tr>
             </thead>
             <tbody>
-            {listItems}
+            {child}
             </tbody>
         </table>
     );
 }
 
-export default TableWorkers;
+export default TableCompany;
