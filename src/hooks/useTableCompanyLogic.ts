@@ -14,10 +14,15 @@ export const useTableCompanyLogic = () => {
 
     const setCheckbox = (id: string | undefined): void => {
         setMainCheckbox(false)
-        const newList: ICompany[] = [...companies.map((el) => (el.id === id ? {
-            ...el,
-            checked: !el.checked
-        } : {...el}))];
+        const newList: ICompany[] = companies.map((el) => {
+            if (el.id === id) {
+                return {
+                    ...el,
+                    checked: !el.checked
+                }
+            }
+            return el
+        });
         store.dispatch(companiesAction(newList))
         const newListChecked: ICompany | undefined = newList.find(item => !item.checked);
         if (!newListChecked) {
