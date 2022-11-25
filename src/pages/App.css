@@ -1,14 +1,15 @@
 .App {
   text-align: center;
   display: flex;
+  font-size: 16px;
 }
 
 table {
   border: 1px solid grey;
   border-collapse: collapse;
-  width: 55%;
+  width: 500px;
   margin: 30px;
-  height: 100vh;
+  max-height: 100vh;
 }
 
 td, th {
@@ -16,11 +17,47 @@ td, th {
   padding: 4px;
 }
 
-.green {
-  background-color: green;
+.yellow {
+  background-color: yellow;
 }
 
 input {
   border: none;
   background: transparent;
+}
+
+.table__buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+button {
+  width: 100px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+}
+
+.table__button-add {
+  background: lightgreen;
+  margin-right: 10px;
+}
+
+.table__button-remove {
+  background-color: lightcoral;
+  margin-left: 10px;
+}
+
+.table__button-add:hover {
+  background: green;
+}
+
+.table__button-remove:hover {
+  background: red;
 }

@@ -1,6 +1,6 @@
 import {TABLE_COLUMN_NAMES} from "constants/constants";
 
-function TableCompany({data}: any) {
+function Table({data}: any) {
 
     const {
         column1,
@@ -8,10 +8,17 @@ function TableCompany({data}: any) {
         column3,
         checkbox,
         setSelectAll,
-        child
+        child,
+        removeEl,
+        addEl
     } = data
 
     return (
+        <div className='table'>
+        <div className="table__buttons">
+            <button className='table__button-add' type="button" onClick={addEl}>Добавить</button>
+            <button className='table__button-remove' type="button" onClick={removeEl}>Удалить</button>
+        </div>
         <table>
             <thead>
             <tr>
@@ -41,7 +48,8 @@ function TableCompany({data}: any) {
             {child}
             </tbody>
         </table>
+        </div>
     );
 }
 
-export default TableCompany;
+export default Table;

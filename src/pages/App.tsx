@@ -7,8 +7,8 @@ import {TABLE_COLUMN_NAMES} from "constants/constants";
 import {useTableCompanyLogic} from "../hooks/useTableCompanyLogic";
 import Table from "../components/Table/Table";
 import {useTableWorkersLogic} from "../hooks/useTableWorkersLogic";
-import ListItemCompanies from "../components/ListItems/ListItemCompanies";
-import ListItemWorkers from "../components/ListItems/ListItemWorkers";
+import RowCompanies from "../components/Row/RowCompanies";
+import RowWorkers from "../components/Row/RowWorkers";
 import {useAppSelector} from "../reduxToolkit/hooks";
 
 function App() {
@@ -23,7 +23,9 @@ function App() {
         companies,
         checkbox,
         setCheckbox,
-        setSelectAll
+        setSelectAll,
+        removeEl,
+        addEl
     } = useTableCompanyLogic()
 
     const {
@@ -31,6 +33,8 @@ function App() {
         workers,
         setCheckbox: setCheckboxWorkers,
         setSelectAll: setSelectAllWorkers,
+        removeEl: removeElWorkers,
+        addEl: addElWorker
     } = useTableWorkersLogic()
 
 
@@ -39,22 +43,26 @@ function App() {
         column1: TABLE_COLUMN_NAMES.COMPANY_NAME,
         column2: TABLE_COLUMN_NAMES.AMOUNT_WORKERS,
         column3: TABLE_COLUMN_NAMES.ADDRESS,
-        child: <ListItemCompanies/>,
+        child: <RowCompanies/>,
         companies,
         checkbox,
         setCheckbox,
-        setSelectAll
+        setSelectAll,
+        removeEl,
+        addEl
     }
 
     const tableWorkersProps = {
         column1: TABLE_COLUMN_NAMES.NAME_WORKER,
         column2: TABLE_COLUMN_NAMES.SURNAME_WORKER,
         column3: TABLE_COLUMN_NAMES.JOB_TITLE,
-        child: <ListItemWorkers/>,
+        child: <RowWorkers/>,
         companies: workers,
         checkbox: checkboxWorkers,
         setCheckbox: setCheckboxWorkers,
-        setSelectAll: setSelectAllWorkers
+        setSelectAll: setSelectAllWorkers,
+        removeEl: removeElWorkers,
+        addEl: addElWorker
     }
 
     return (

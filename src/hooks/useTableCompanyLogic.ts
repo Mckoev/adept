@@ -7,6 +7,7 @@ import {selectedAllWorkersAction} from "reduxToolkit/slices/selectedAllWorkers";
 import {useTableWorkersLogic} from "./useTableWorkersLogic";
 import {selectedAllCompaniesAction} from "../reduxToolkit/slices/selectedAllCompanies";
 import {showWorkersAction} from "../reduxToolkit/slices/showWorkers";
+import {getID} from "../mock/mock";
 
 export const useTableCompanyLogic = () => {
     const checkbox: boolean = useAppSelector((state) => state.selectedAllCompanies)
@@ -42,7 +43,7 @@ export const useTableCompanyLogic = () => {
 
     const setSelectAll = (): void => {
         store.dispatch(selectedAllCompaniesAction(!checkbox))
-        const newList: ICompany[] = [...companies.map((el) => ({...el, checked: !checkbox}))];
+        const newList: ICompany[] = companies.map((el) => ({...el, checked: !checkbox}));
         store.dispatch(companiesAction(newList))
         const workers: IWorkers[] = getWorkers(newList)
         store.dispatch(workersAction(workers))
@@ -58,10 +59,48 @@ export const useTableCompanyLogic = () => {
         }
     }
 
+    const removeEl = () => {
+        const remainingCompanies: ICompany[] = companies.filter((el) => !el.checked);
+        if (companies.length) {
+            store.dispatch(selectedAllCompaniesAction(false))
+        }
+        store.dispatch(companiesAction(remainingCompanies))
+        store.dispatch(showWorkersAction(false))
+    }
+
+    const addEl = () => {
+        const emptyCompany: ICompany = {
+            id: getID(),
+            company: '',
+            address: '',
+            checked: false,
+            workers: []
+        }
+        const newListCompanies: ICompany[] = [...companies]
+        newListCompanies.push(emptyCompany)
+        store.dispatch(companiesAction(newListCompanies))
+    }
+
+    const changeCompany = (newNameCompany: string, company: ICompany) => {
+        const nameCompany = companies.map((el) => {
+            if (el.id === company.id) {
+                return {
+                    ...el,
+                    company: newNameCompany
+                }
+            }
+            return  el
+        })
+        store.dispatch(companiesAction(nameCompany))
+    }
+
     return {
         companies,
         checkbox,
         setCheckbox,
-        setSelectAll
+        setSelectAll,
+        removeEl,
+        addEl,
+        changeCompany
     }
 }

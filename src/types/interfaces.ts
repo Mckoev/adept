@@ -1,5 +1,5 @@
 import {TABLE_COLUMN_NAMES} from "../constants/constants";
-import ListItemCompanies from "../components/ListItems/ListItemCompanies";
+import RowCompanies from "../components/Row/RowCompanies";
 
 export interface ICompany {
     id: string | undefined;
@@ -17,12 +17,22 @@ export interface IWorkers {
     checked?: boolean
 }
 
-export interface IRow {
-    el: ICompany | IWorkers;
+export interface IRowCompany {
+    el: ICompany;
     cell1: string;
     cell2: string;
     cell3: string;
     setCheckbox: (e: string | undefined) => void;
+    changeCompany: (newNameCompany: string, el: ICompany) => void;
+}
+
+export interface IRowWorkers {
+    el: IWorkers;
+    cell1: string;
+    cell2: string;
+    cell3: string;
+    setCheckbox: (e: string | undefined) => void;
+    changeWorkers: (newNameWorker: string, newSurnameWorker: string, newJobTitleWorker: string, el: IWorkers) => void;
 }
 
 export interface ITable {

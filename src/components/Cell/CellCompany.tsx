@@ -1,19 +1,19 @@
-import {IRow} from "types/interfaces";
+import {IRowCompany} from "types/interfaces";
 import {TABLE_COLUMN_NAMES} from "constants/constants";
-import {useState} from "react";
+import React, {ChangeEvent, useState} from "react";
 
-function RowCompany({cell1, cell2, cell3, el, setCheckbox}: IRow) {
+function CellCompany({cell1, cell2, cell3, el, setCheckbox, changeCompany}: IRowCompany) {
 
     const [companyName, setCompanyName] = useState(cell1)
     const [address, setAddress] = useState(cell3)
 
-    function handlerChangeCompany(e: any): void {
+    function handlerChangeCompany(e: ChangeEvent<HTMLInputElement>): void {
         setCompanyName(e.target.value)
     }
 
-    function onKeyDownCompany(e: any) {
-        if (e.code === "Enter") {
-            // change the state company name  of an element *el*
+    function onKeyDownCompany(e: React.KeyboardEvent<HTMLInputElement>) {
+        if (e.code === "Enter" || e.code === "NumpadEnter") {
+            changeCompany(companyName, el)
         }
     }
 
@@ -51,4 +51,4 @@ function RowCompany({cell1, cell2, cell3, el, setCheckbox}: IRow) {
     );
 }
 
-export default RowCompany;
+export default CellCompany;
