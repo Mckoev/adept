@@ -11,22 +11,15 @@ function CellCompany({cell1, cell2, cell3, el, setCheckbox, changeCompany}: IRow
         setCompanyName(e.target.value)
     }
 
-    function onKeyDownCompany(e: React.KeyboardEvent<HTMLInputElement>) {
-        if (e.code === "Enter" || e.code === "NumpadEnter") {
-            changeCompany(companyName, el)
-        }
-    }
-
     function handlerChangeAddress(e: any): void {
         setAddress(e.target.value)
     }
 
-    function onKeyDownAddress(e: any) {
-        if (e.code === "Enter") {
-            // change the state address of an element *el*
+    function onKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+        if (e.code === "Enter" || e.code === "NumpadEnter") {
+            changeCompany(companyName, address, el)
         }
     }
-
 
     return (
         <>
@@ -38,14 +31,14 @@ function CellCompany({cell1, cell2, cell3, el, setCheckbox, changeCompany}: IRow
             </td>
             <td>
                 <input value={companyName} type="text" onChange={(e) => handlerChangeCompany(e)}
-                       onKeyDown={onKeyDownCompany}/>
+                       onKeyDown={onKeyDown}/>
             </td>
             <td>
                 {cell2}
             </td>
             <td>
                 <input value={address} type="text" onChange={(e) => handlerChangeAddress(e)}
-                       onKeyDown={onKeyDownAddress}/>
+                       onKeyDown={onKeyDown}/>
             </td>
         </>
     );

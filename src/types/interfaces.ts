@@ -23,7 +23,7 @@ export interface IRowCompany {
     cell2: string;
     cell3: string;
     setCheckbox: (e: string | undefined) => void;
-    changeCompany: (newNameCompany: string, el: ICompany) => void;
+    changeCompany: (newNameCompany: string, address: string, el: ICompany) => void;
 }
 
 export interface IRowWorkers {

@@ -81,12 +81,13 @@ export const useTableCompanyLogic = () => {
         store.dispatch(companiesAction(newListCompanies))
     }
 
-    const changeCompany = (newNameCompany: string, company: ICompany) => {
+    const changeCompany = (newNameCompany: string, newAddress: string, company: ICompany) => {
         const nameCompany = companies.map((el) => {
             if (el.id === company.id) {
                 return {
                     ...el,
-                    company: newNameCompany
+                    company: newNameCompany,
+                    address: newAddress
                 }
             }
             return  el
