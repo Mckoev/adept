@@ -11,7 +11,6 @@ export const useTableWorkersLogic = () => {
     const workers: IWorkers[] = useAppSelector((state) => state.workers);
     const companies: ICompany[] = useAppSelector((state) => state.companies);
 
-
     const setCheckbox = (id: string | undefined): void => {
         store.dispatch(selectedAllWorkersAction(false))
         const newList: IWorkers[] = workers.map((el: IWorkers) => {
@@ -23,7 +22,6 @@ export const useTableWorkersLogic = () => {
             }
             return el
         });
-
         const newListChecked: IWorkers | undefined = newList.find(item => item.checked === false);
         if (!newListChecked) {
             store.dispatch(selectedAllWorkersAction(true))

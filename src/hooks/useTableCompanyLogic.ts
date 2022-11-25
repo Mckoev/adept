@@ -34,10 +34,12 @@ export const useTableCompanyLogic = () => {
         const workers: IWorkers[] = getWorkers(checkedCompanies)
         store.dispatch(workersAction(workers))
         if (!workers.length) {
-            store.dispatch(selectedAllWorkersAction(false))
-            store.dispatch(showWorkersAction(false))
-        } else {
+             store.dispatch(selectedAllWorkersAction(false))
+        }
+        if (checkedCompanies.length) {
             store.dispatch(showWorkersAction(true))
+        } else {
+            store.dispatch(showWorkersAction(false))
         }
     }
 
@@ -56,6 +58,7 @@ export const useTableCompanyLogic = () => {
         if (checkbox) {
             store.dispatch((workersAction([])))
             store.dispatch(selectedAllWorkersAction(false))
+            store.dispatch(showWorkersAction(false))
         }
     }
 
