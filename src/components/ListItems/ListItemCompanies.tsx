@@ -1,6 +1,6 @@
 import {useTableCompanyLogic} from "hooks/useTableCompanyLogic";
 import {ICompany} from "../../types/interfaces";
-import Row from "../Cell/Row";
+import RowCompany from "../Row/RowCompany";
 
 function ListItemCompanies() {
 
@@ -11,8 +11,8 @@ function ListItemCompanies() {
 
     const listItems = companies.map((el: ICompany) => (
         <tr key={el.id} className={el.checked ? "green" : ""}>
-            <Row el={el} cell1={el.company} cell2={el.workers.length.toString()} cell3={el.address}
-                 setCheckbox={setCheckbox}/>
+            <RowCompany el={el} cell1={el.company} cell2={el.workers.length.toString()} cell3={el.address}
+                        setCheckbox={setCheckbox}/>
         </tr>
     ))
     return (

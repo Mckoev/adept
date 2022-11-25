@@ -6,6 +6,7 @@ import {workersAction} from "reduxToolkit/slices/workers";
 import {selectedAllWorkersAction} from "reduxToolkit/slices/selectedAllWorkers";
 import {useTableWorkersLogic} from "./useTableWorkersLogic";
 import {selectedAllCompaniesAction} from "../reduxToolkit/slices/selectedAllCompanies";
+import {showWorkersAction} from "../reduxToolkit/slices/showWorkers";
 
 export const useTableCompanyLogic = () => {
     const checkbox: boolean = useAppSelector((state) => state.selectedAllCompanies)
@@ -33,6 +34,9 @@ export const useTableCompanyLogic = () => {
         store.dispatch(workersAction(workers))
         if (!workers.length) {
             store.dispatch(selectedAllWorkersAction(false))
+            store.dispatch(showWorkersAction(false))
+        } else {
+            store.dispatch(showWorkersAction(true))
         }
     }
 
@@ -44,6 +48,9 @@ export const useTableCompanyLogic = () => {
         store.dispatch(workersAction(workers))
         if (!workers.length) {
             store.dispatch(selectedAllWorkersAction(false))
+            store.dispatch(showWorkersAction(false))
+        } else {
+            store.dispatch(showWorkersAction(true))
         }
         if (checkbox) {
             store.dispatch((workersAction([])))

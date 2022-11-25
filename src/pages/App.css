@@ -19,3 +19,8 @@ td, th {
 .green {
   background-color: green;
 }
+
+input {
+  border: none;
+  background: transparent;
+}

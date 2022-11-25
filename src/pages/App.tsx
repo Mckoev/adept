@@ -1,16 +1,19 @@
-import 'App.css';
+import './App.css';
 import {useEffect} from "react";
 import {store} from "reduxToolkit/store";
 import {companiesAction} from "reduxToolkit/slices/companies";
 import {mock} from "mock/mock";
 import {TABLE_COLUMN_NAMES} from "constants/constants";
-import {useTableCompanyLogic} from "./hooks/useTableCompanyLogic";
-import Table from "./components/Table/Table";
-import {useTableWorkersLogic} from "./hooks/useTableWorkersLogic";
-import ListItemCompanies from "./components/ListItems/ListItemCompanies";
-import ListItemWorkers from "./components/ListItems/ListItemWorkers";
+import {useTableCompanyLogic} from "../hooks/useTableCompanyLogic";
+import Table from "../components/Table/Table";
+import {useTableWorkersLogic} from "../hooks/useTableWorkersLogic";
+import ListItemCompanies from "../components/ListItems/ListItemCompanies";
+import ListItemWorkers from "../components/ListItems/ListItemWorkers";
+import {useAppSelector} from "../reduxToolkit/hooks";
 
 function App() {
+
+    const showWorkers: boolean = useAppSelector((state) => state.showWorkers)
 
     useEffect(() => {
         store.dispatch(companiesAction(mock))
@@ -57,7 +60,7 @@ function App() {
     return (
         <div className="App">
             <Table data={tableCompanyProps}/>
-            <Table data={tableWorkersProps}/>
+            {showWorkers && < Table data={tableWorkersProps}/>}
         </div>
     );
 }

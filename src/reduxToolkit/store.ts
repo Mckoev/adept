@@ -3,12 +3,14 @@ import companies from "./slices/companies";
 import workers from "./slices/workers";
 import selectedAllWorkers from "./slices/selectedAllWorkers";
 import selectedAllCompanies from "./slices/selectedAllCompanies";
+import showWorkers from "./slices/showWorkers";
 
 const rootReducer = combineReducers({
     companies,
     workers,
     selectedAllWorkers,
-    selectedAllCompanies
+    selectedAllCompanies,
+    showWorkers
 });
 
 export const store = configureStore({

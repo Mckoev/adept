@@ -1,6 +1,6 @@
 import {useTableWorkersLogic} from "hooks/useTableWorkersLogic";
 import {IWorkers} from "types/interfaces";
-import Row from "../Cell/Row";
+import RowWorkers from "../Row/RowWorkers";
 
 function ListItemWorkers() {
 
@@ -11,8 +11,8 @@ function ListItemWorkers() {
 
     const listItems = workers.map((el: IWorkers) => (
         <tr key={el.id} className={el.checked ? "green" : ""}>
-            <Row el={el} cell1={el.name} cell2={el.surname} cell3={el.jobTitle}
-                 setCheckbox={setCheckbox}/>
+            <RowWorkers el={el} cell1={el.name} cell2={el.surname} cell3={el.jobTitle}
+                        setCheckbox={setCheckbox}/>
         </tr>
     ))
     return (

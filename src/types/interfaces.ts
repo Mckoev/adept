@@ -1,3 +1,6 @@
+import {TABLE_COLUMN_NAMES} from "../constants/constants";
+import ListItemCompanies from "../components/ListItems/ListItemCompanies";
+
 export interface ICompany {
     id: string | undefined;
     company: string;
@@ -14,7 +17,7 @@ export interface IWorkers {
     checked?: boolean
 }
 
-export interface ICell {
+export interface IRow {
     el: ICompany | IWorkers;
     cell1: string;
     cell2: string;
@@ -22,8 +25,13 @@ export interface ICell {
     setCheckbox: (e: string | undefined) => void;
 }
 
-export interface ITableprops {
+export interface ITable {
     column1: string;
     column2: string;
     column3: string;
+    child: any;
+    companies: ICompany[] | IWorkers[];
+    checkbox: boolean;
+    setCheckbox: (e: string | undefined) => void;
+    setSelectAll: (e: string | undefined) => void;
 }
