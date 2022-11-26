@@ -1,7 +1,7 @@
 import {ICompany, IWorkers} from "types/interfaces";
 import {useAppSelector} from "reduxToolkit/hooks";
 import {store} from "reduxToolkit/store";
-import {companiesAction} from "reduxToolkit/slices/companies";
+import {addCompany, changeCompany, removeCompany, setCompanies} from "reduxToolkit/slices/companies";
 import {workersAction} from "reduxToolkit/slices/workers";
 import {selectedAllWorkersAction} from "reduxToolkit/slices/selectedAllWorkers";
 import {useTableWorkersLogic} from "./useTableWorkersLogic";
@@ -16,7 +16,7 @@ export const useTableCompanyLogic = () => {
 
     const setCheckbox = (id: string | undefined): void => {
         store.dispatch(selectedAllCompaniesAction(false))
-        const newList: ICompany[] = companies.map((el) => {
+        const updatedCompanies: ICompany[] = companies.map((el) => {  // get an updated list of companies
             if (el.id === id) {
                 return {
                     ...el,
@@ -25,13 +25,13 @@ export const useTableCompanyLogic = () => {
             }
             return el
         });
-        store.dispatch(companiesAction(newList))
-        const newListChecked: ICompany | undefined = newList.find(item => !item.checked);
+        store.dispatch(setCompanies(updatedCompanies))
+        const newListChecked: ICompany | undefined = updatedCompanies.find(item => !item.checked);
         if (!newListChecked) {
             store.dispatch(selectedAllCompaniesAction(true))
         }
-        const checkedCompanies: ICompany[] = newList.filter((el) => el.checked);
-        const workers: IWorkers[] = getWorkers(checkedCompanies)
+        const checkedCompanies: ICompany[] = updatedCompanies.filter((el) => el.checked);
+        const workers: IWorkers[] = getWorkers(checkedCompanies)             // get workers in selected companies
         store.dispatch(workersAction(workers))
         if (!workers.length) {
              store.dispatch(selectedAllWorkersAction(false))
@@ -45,9 +45,9 @@ export const useTableCompanyLogic = () => {
 
     const setSelectAll = (): void => {
         store.dispatch(selectedAllCompaniesAction(!checkbox))
-        const newList: ICompany[] = companies.map((el) => ({...el, checked: !checkbox}));
-        store.dispatch(companiesAction(newList))
-        const workers: IWorkers[] = getWorkers(newList)
+        const newList: ICompany[] = companies.map((el) => ({...el, checked: !checkbox})); // check all campaigns
+        store.dispatch(setCompanies(newList))
+        const workers: IWorkers[] = getWorkers(newList)                                       // get all workers in all companies
         store.dispatch(workersAction(workers))
         if (!workers.length) {
             store.dispatch(selectedAllWorkersAction(false))
@@ -63,11 +63,11 @@ export const useTableCompanyLogic = () => {
     }
 
     const removeEl = () => {
-        const remainingCompanies: ICompany[] = companies.filter((el) => !el.checked);
         if (companies.length) {
             store.dispatch(selectedAllCompaniesAction(false))
         }
-        store.dispatch(companiesAction(remainingCompanies))
+        // @ts-ignore
+        store.dispatch(removeCompany())
         store.dispatch(showWorkersAction(false))
     }
 
@@ -76,26 +76,14 @@ export const useTableCompanyLogic = () => {
             id: getID(),
             company: '',
             address: '',
-            checked: false,
+            checked: checkbox,
             workers: []
         }
-        const newListCompanies: ICompany[] = [...companies]
-        newListCompanies.push(emptyCompany)
-        store.dispatch(companiesAction(newListCompanies))
+        store.dispatch(addCompany(emptyCompany))
     }
 
-    const changeCompany = (newNameCompany: string, newAddress: string, company: ICompany) => {
-        const nameCompany = companies.map((el) => {
-            if (el.id === company.id) {
-                return {
-                    ...el,
-                    company: newNameCompany,
-                    address: newAddress
-                }
-            }
-            return  el
-        })
-        store.dispatch(companiesAction(nameCompany))
+    const changeEl = (newNameCompany: string, newAddress: string, company: ICompany) => {
+        store.dispatch(changeCompany({newNameCompany, newAddress, company}))
     }
 
     return {
@@ -105,6 +93,6 @@ export const useTableCompanyLogic = () => {
         setSelectAll,
         removeEl,
         addEl,
-        changeCompany
+        changeEl
     }
 }

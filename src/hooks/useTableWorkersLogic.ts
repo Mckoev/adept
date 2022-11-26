@@ -3,7 +3,7 @@ import {ICompany, IWorkers} from "types/interfaces";
 import {store} from "reduxToolkit/store";
 import {selectedAllWorkersAction} from "reduxToolkit/slices/selectedAllWorkers";
 import {workersAction} from "reduxToolkit/slices/workers";
-import {companiesAction} from "../reduxToolkit/slices/companies";
+import {setCompanies} from "../reduxToolkit/slices/companies";
 import {getID} from "../mock/mock";
 
 export const useTableWorkersLogic = () => {
@@ -63,14 +63,14 @@ export const useTableWorkersLogic = () => {
         if (workers.length) {
             store.dispatch(selectedAllWorkersAction(false))
         }
-        store.dispatch(companiesAction(newList))
+        store.dispatch(setCompanies(newList))
         store.dispatch(workersAction(remainingWorkers))
     }
 
     const addEl = () => {
         const emptyWorker: IWorkers = {
             id: getID(),
-            checked: false,
+            checked: checkbox,
             name: '',
             surname: '',
             jobTitle: ''
@@ -87,7 +87,7 @@ export const useTableWorkersLogic = () => {
             return el
         })
         store.dispatch(workersAction(newListWorkers))
-        store.dispatch(companiesAction(newCompanies))
+        store.dispatch(setCompanies(newCompanies))
     }
 
     const changeWorkers = (newNameWorker: string, newSurnameWorker: string, newJobTitleWorker: string, worker: IWorkers) => {
@@ -112,7 +112,7 @@ export const useTableWorkersLogic = () => {
             }
             return el
         })
-        store.dispatch(companiesAction(newCompanies))
+        store.dispatch(setCompanies(newCompanies))
     }
 
     return {

@@ -1,7 +1,7 @@
 import './App.css';
 import {useEffect} from "react";
 import {store} from "reduxToolkit/store";
-import {companiesAction} from "reduxToolkit/slices/companies";
+import {setCompanies} from "reduxToolkit/slices/companies";
 import {mock} from "mock/mock";
 import {TABLE_COLUMN_NAMES} from "constants/constants";
 import {useTableCompanyLogic} from "../hooks/useTableCompanyLogic";
@@ -16,7 +16,7 @@ function App() {
     const showWorkers: boolean = useAppSelector((state) => state.showWorkers)
 
     useEffect(() => {
-        store.dispatch(companiesAction(mock))
+        store.dispatch(setCompanies(mock))
     }, [])
 
     const {
