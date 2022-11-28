@@ -70,24 +70,22 @@ export const useTableWorkersLogic = () => {
     const addEl = () => {
         const emptyWorker: IWorkers = {
             id: getID(),
-            checked: checkbox,
             name: '',
             surname: '',
             jobTitle: ''
         }
-        const newListWorkers: IWorkers[] = [...workers]
-        newListWorkers.push(emptyWorker)
         const newCompanies = companies.map((el) => {
             if (el.checked) {
                 return {
                     ...el,
-                    workers: newListWorkers
+                    workers: [...el.workers, emptyWorker]
                 }
             }
             return el
         })
-        store.dispatch(workersAction(newListWorkers))
+        console.log(newCompanies)
         store.dispatch(setCompanies(newCompanies))
+
     }
 
     const changeWorkers = (newNameWorker: string, newSurnameWorker: string, newJobTitleWorker: string, worker: IWorkers) => {
