@@ -1,14 +1,7 @@
 import type {PayloadAction} from '@reduxjs/toolkit'
 import {createSlice} from '@reduxjs/toolkit';
 import {getID} from "../../mock/mock";
-import {ICompany, IWorkers} from "../../types/interfaces";
-
-interface IChangeCompany {
-    newNameCompany: string;
-    newAddress: string;
-    company: ICompany;
-    workers?: IWorkers;
-}
+import {ICompany} from "../../types/interfaces";
 
 const companies = createSlice({
     name: 'companies',
@@ -31,8 +24,10 @@ const companies = createSlice({
         removeCompany(state) {
             return state.filter((el) => !el.checked)
         },
+        /* eslint-disable */
         //@ts-ignore
         changeCompany(state, action: any) {
+            /* eslint-enable */
             const {newNameCompany, newAddress, company} = action.payload
             return  state.map((el: ICompany) => {
                 if (el.id === company.id) {

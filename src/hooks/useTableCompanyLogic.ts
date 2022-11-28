@@ -66,9 +66,11 @@ export const useTableCompanyLogic = () => {
         if (companies.length) {
             store.dispatch(selectedAllCompaniesAction(false))
         }
+        /* eslint-disable */
         // @ts-ignore
         store.dispatch(removeCompany())
         store.dispatch(showWorkersAction(false))
+        /* eslint-enable */
     }
 
     const addEl = () => {

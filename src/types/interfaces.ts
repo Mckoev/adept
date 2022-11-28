@@ -1,6 +1,3 @@
-import {TABLE_COLUMN_NAMES} from "../constants/constants";
-import RowCompanies from "../components/Row/RowCompanies";
-
 export interface ICompany {
     id: string | undefined;
     company: string;

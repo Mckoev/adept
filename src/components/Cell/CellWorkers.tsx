@@ -2,7 +2,7 @@ import {IRowWorkers} from "types/interfaces";
 import {TABLE_COLUMN_NAMES} from "constants/constants";
 import React, {ChangeEvent, useState} from "react";
 
-function RowCompany({cell1, cell2, cell3, el, setCheckbox, changeWorkers}: IRowWorkers) {
+function CellWorkers({cell1, cell2, cell3, el, setCheckbox, changeWorkers}: IRowWorkers) {
 
     const [name, setName] = useState(cell1)
     const [surname, setSurname] = useState(cell2)
@@ -50,4 +50,4 @@ function RowCompany({cell1, cell2, cell3, el, setCheckbox, changeWorkers}: IRowW
     );
 }
 
-export default RowCompany;
+export default CellWorkers;
